@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { styled } from "styled-components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function Home() {
           </div>
         </div>
 
+        <StyledHello />
         <div className={styles.center}>klklklk</div>
 
         <div className={styles.grid}>
@@ -95,3 +97,9 @@ export default function Home() {
     </>
   );
 }
+
+const StyledHello = styled.div({
+  backgroundColor: "yellow",
+  width: 200,
+  height: 200,
+});
