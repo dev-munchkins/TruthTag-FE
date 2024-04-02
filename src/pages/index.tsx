@@ -4,9 +4,18 @@ import LogoImg from "@assets/svg/Vector.svg";
 import SearchBtn from "@assets/svg/Search.svg";
 import NotiBtn from "@assets/svg/Notifications none.svg";
 import { theme } from "@/styles/theme";
+import Flicking from "@egjs/react-flicking";
+import "@egjs/react-flicking/dist/flicking.css";
 
 export default function Home() {
-  const foodCategoryList = ["전체", "컵라면", "우유", "과자", "음료", "아무거나"];
+  const foodCategoryList = [
+    "전체",
+    "컵라면",
+    "우유",
+    "과자",
+    "음료",
+    "아무거나",
+  ];
   return (
     <>
       <Header>
@@ -24,6 +33,30 @@ export default function Home() {
           <FoodCategoryBtn key={key}>{item}</FoodCategoryBtn>
         ))}
       </Slider>
+      <Flicking align="center" circular={false} easing={(x) => x}>
+        <CarouselItem className="panel" style={{ color: "white" }}>
+          <CarouselItemTitle>
+            최근에 <span>SKIM</span>된,
+          </CarouselItemTitle>
+          <CarouselItemInfo>
+            <div>오뚜기</div>
+            <div>컵누들 매콤한 맛</div>
+          </CarouselItemInfo>
+        </CarouselItem>
+        <CarouselItem className="panel" style={{ color: "white" }}>
+          <CarouselItemTitle>
+            최근에 <span>SHRINK</span>된,
+          </CarouselItemTitle>
+        </CarouselItem>
+        <CarouselItem className="panel" style={{ color: "white" }}>
+          <CarouselItemTitle>
+            <span>즐겨찾기</span>하기 좋은!
+          </CarouselItemTitle>
+        </CarouselItem>
+      </Flicking>
+      <ReviewSection>
+        Trend <span>REVIEW</span>
+      </ReviewSection>
     </>
   );
 }
@@ -60,5 +93,53 @@ const FoodCategoryBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+`;
+
+const CarouselItem = styled.div`
+  width: 327px;
+  height: 422px;
+  border-radius: 15px;
+  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  box-shadow: 0px -150px 100px 10px rgba(0, 0, 0, 0.5) inset;
+  margin-right: 12px;
+  padding: 0 32px;
+`;
+
+const CarouselItemTitle = styled.div`
+  color: var(--True-White, #fff);
+  font-family: "Noto Sans KR";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 128.571% */
+  letter-spacing: -0.5px;
+  & > span {
+    color: var(--True-Yellow, var(--True-White, #ebff00));
+  }
+  margin-top: 286px;
+  margin-bottom: 16px;
+`;
+
+const CarouselItemInfo = styled.div`
+  color: var(--True-White, var(--True-White, #fff));
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px; /* 162.5% */
+  letter-spacing: -0.5px;
+`;
+
+const ReviewSection = styled.div`
+  color: var(--True-White, var(--True-White, #fff));
+  font-family: "Noto Sans KR";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 140% */
+  & > span {
+    color: var(--True-Yellow, var(--True-White, #ebff00));
+  }
+  margin-top: 24px;
+  padding: 0 24px;
 `;
