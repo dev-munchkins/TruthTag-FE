@@ -85,7 +85,13 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  display: flex;
+  justify-content: center;
+}
+
 body {
+  width: 375px;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
