@@ -88,17 +88,13 @@ body {
 html {
   display: flex;
   justify-content: center;
+  background-color: white;
 }
 
 body {
   width: 375px;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgba(15, 16, 21, 1);
 }
 
 a {
@@ -124,7 +120,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--colors-gray950);
 }
 
 html,
