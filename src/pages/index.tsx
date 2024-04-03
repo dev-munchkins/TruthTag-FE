@@ -6,6 +6,7 @@ import NotiBtn from "@assets/svg/Notifications none.svg";
 import { theme } from "@/styles/theme";
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const foodCategoryList = [
@@ -16,6 +17,9 @@ export default function Home() {
     "음료",
     "아무거나",
   ];
+
+  const router = useRouter();
+
   return (
     <>
       <Header>
@@ -24,10 +28,14 @@ export default function Home() {
           <Logo />
         </div>
         <div>
-          <SearchBtn style={{ marginRight: "16px" }} />
+          <SearchBtn
+            style={{ marginRight: "16px" }}
+            onClick={() => router.push("/search")}
+          />
           <NotiBtn />
         </div>
       </Header>
+
       <Slider>
         {foodCategoryList.map((item, key) => (
           <FoodCategoryBtn key={key}>{item}</FoodCategoryBtn>
