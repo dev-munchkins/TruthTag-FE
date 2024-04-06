@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import BackArrow from "@assets/svg/Arrow back ios new (1).svg";
 import RawMaterialListBtn from "@assets/svg/Arrow back ios new (2).svg";
@@ -12,6 +12,7 @@ import DateBtn from "@assets/svg/Keyboard arrow down.svg";
 import Line from "@assets/svg/Line 25.svg";
 import MaterialAddIcon from "@assets/svg/Add circle.svg";
 import MaterialRemoveIcon from "@assets/svg/Remove circle.svg";
+import Select from "react-select";
 
 const ResponsiveLine = dynamic(
   () => import("@nivo/line").then((m) => m.ResponsiveLine),
@@ -19,6 +20,7 @@ const ResponsiveLine = dynamic(
 );
 import dynamic from "next/dynamic";
 import { data } from "./sampledata";
+import { useRouter } from "next/router";
 
 const MyResponsiveLine = ({ data /* see data tab */ }: any) => (
   <ResponsiveLine
@@ -110,13 +112,44 @@ const MyResponsiveLine = ({ data /* see data tab */ }: any) => (
 );
 
 const index = () => {
+  const router = useRouter();
   const [onClickListBtn, setOnClickListBtn] = useState(false);
+  const dateData = [
+    { value: "4월 넷째주", label: "4월 넷째주" },
+    { value: "4월 넷째주", label: "4월 셋째주" },
+  ];
+
+  const [headerColorChange, setHeaderColorChange] = useState(false);
+
+  const changeHeaderColor = () => {
+    if (window.scrollY >= 390) {
+      setHeaderColorChange(true);
+    } else {
+      setHeaderColorChange(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeHeaderColor);
+    return () => {
+      window.removeEventListener("scroll", changeHeaderColor);
+    };
+  }, []);
 
   return (
     <div style={{ backgroundColor: "white" }}>
-      <DetailHeader>
-        <BackArrowBlack />
-        <MenuBlack />
+      <DetailHeader headerColorChange={headerColorChange}>
+        {headerColorChange ? (
+          <>
+            <BackArrow onClick={() => router.back()} />
+            <MenuWhite />
+          </>
+        ) : (
+          <>
+            <BackArrowBlack onClick={() => router.back()}/>
+            <MenuBlack />
+          </>
+        )}
       </DetailHeader>
 
       <ImageContainer />
@@ -149,6 +182,18 @@ const index = () => {
           <RawMaterialDateButton>
             2024-03-26
             <DateBtn />
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              defaultValue={dateData[0]}
+              isDisabled={false}
+              isLoading={false}
+              isClearable={false}
+              isRtl={false}
+              isSearchable={false}
+              name="color"
+              options={dateData}
+            />
           </RawMaterialDateButton>
         </RawMaterialTitle>
         <RawMaterialList onClickListBtn={onClickListBtn}>
@@ -181,11 +226,11 @@ const index = () => {
 
 export default index;
 
-const DetailHeader = styled.div`
+const DetailHeader = styled.div<{ headerColorChange: boolean }>`
   width: 375px;
   height: 56px;
   flex-shrink: 0;
-  background-color: white;
+  background-color: ${(props) => (props.headerColorChange ? "black" : "white")};
 
   display: flex;
   align-items: center;
@@ -194,6 +239,8 @@ const DetailHeader = styled.div`
   position: fixed;
 
   padding: 0 24px;
+
+  z-index: 1;
 `;
 
 const ImageContainer = styled.div`
@@ -335,16 +382,16 @@ const RawMaterialItem = styled.div`
 `;
 
 const ListBtnContainer = styled.div<{ onClickListBtn: boolean }>`
-  border-radius: ${props => props.onClickListBtn ? '10px 10px 0px 0px' : '0px 0px 10px 10px'};
+  border-radius: ${(props) =>
+    props.onClickListBtn ? "10px 10px 0px 0px" : "0px 0px 10px 10px"};
   background: var(--True-Light-BlueBlack, #191a1f);
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
   width: 327px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: ${props => props.onClickListBtn ? '0px' : '20px'};
-  padding-top: ${props => !props.onClickListBtn ? '0px' : '20px'};
+  padding-bottom: ${(props) => (props.onClickListBtn ? "0px" : "20px")};
+  padding-top: ${(props) => (!props.onClickListBtn ? "0px" : "20px")};
 
-
-  transform: ${props => props.onClickListBtn ? 'rotate(180deg)' : ''}
+  transform: ${(props) => (props.onClickListBtn ? "rotate(180deg)" : "")};
 `;
