@@ -7,6 +7,7 @@ import SkimIcon from "@assets/svg/Question exchange.svg";
 import ShrinkUpIcon from "@assets/svg/Trending up.svg";
 import ShrinkDownIcon from "@assets/svg/Trending down.svg";
 import { useRouter } from "next/router";
+import Footer from "@pages/components/common/Footer";
 
 const Index = () => {
   const router = useRouter();
@@ -37,6 +38,8 @@ const Index = () => {
           </NotificationItem>
         </div>
       ))}
+
+      <Footer clicked="mypage" />
     </div>
   );
 };

@@ -67,7 +67,7 @@ export default function Home() {
         Trend <span>REVIEW</span>
       </ReviewSection>
 
-      <Footer clicked="home" />
+      <Footer clicked="home" padding />
     </div>
   );
 }

@@ -20,6 +20,7 @@ const ResponsiveLine = dynamic(
 );
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import Footer from "@pages/components/common/Footer";
 
 const data = [
   {
@@ -164,7 +165,7 @@ function Index() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "white" }}>
+    <div style={{ backgroundColor: "white", height: '100vh', overflowY: 'scroll' }}>
       <DetailHeader headerColorChange={headerColorChange}>
         {headerColorChange ? (
           <>
@@ -247,6 +248,8 @@ function Index() {
           />
         </ListBtnContainer>
       </InfoSection>
+
+      <Footer clicked="home" padding />
     </div>
   );
 }
