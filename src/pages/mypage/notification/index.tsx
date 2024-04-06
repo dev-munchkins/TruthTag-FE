@@ -46,4 +46,6 @@ const NotificationItem = styled.div`
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
 
   margin-bottom: 15px;
+
+  padding: 16px;
 `;

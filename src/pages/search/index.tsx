@@ -91,7 +91,7 @@ function Index() {
         <HotSearchWordsSection>
           <HotSearchWordsTitle>인기 검색어</HotSearchWordsTitle>
           {howtWordsItemList.map((item, index) => (
-            <div>
+            <div key = {index}>
               <HotSearchWordsItem key={index}>
                 <span style={{ marginRight: "21px", color: "#EBFF00" }}>
                   {index + 1}
