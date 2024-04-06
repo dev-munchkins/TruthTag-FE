@@ -4,8 +4,10 @@ import styled from "styled-components";
 import Select, { StylesConfig } from "react-select";
 import SearchIcon from "@assets/svg/Search.svg";
 import Line from "@assets/svg/Line 25.svg";
+import { useRouter } from "next/router";
 
 function Index() {
+  const router = useRouter();
   const options = [
     { value: "상품명", label: "상품명" },
     { value: "원재료", label: "원재료" },
@@ -16,9 +18,9 @@ function Index() {
   const howtWordsItemList = [0, 0, 0, 0, 0, 0, 0, 0];
 
   return (
-    <div style={{ padding: "0 24px" }}>
+    <div style={{ padding: "0 24px", height: "100vh", overflowY: "scroll" }}>
       <SearchHeader>
-        <LogoImg />
+        <LogoImg onClick={() => router.push("/")} />
         <SearchBar>
           <Select
             defaultValue={selectedOption}
@@ -232,5 +234,5 @@ const NotificationImageContainer = styled.div`
   border-radius: 100px;
   background: rgba(0, 0, 0, 0.3);
 
-  background-image: url('/assets/Product Image.png') center center;
+  background-image: url("/assets/Product Image.png") center center;
 `;

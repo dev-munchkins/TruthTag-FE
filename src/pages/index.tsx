@@ -32,7 +32,7 @@ export default function Home() {
             style={{ marginRight: "16px" }}
             onClick={() => router.push("/search")}
           />
-          <NotiBtn />
+          <NotiBtn onClick={() => router.push("/mypage/notification")} />
         </div>
       </Header>
 
