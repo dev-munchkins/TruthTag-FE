@@ -22,7 +22,8 @@ export const data = [
         x: "5월",
         y: 101,
       },
- 
     ],
   },
 ];
+
+export default data;

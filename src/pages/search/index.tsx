@@ -91,7 +91,7 @@ function Index() {
         <HotSearchWordsSection>
           <HotSearchWordsTitle>인기 검색어</HotSearchWordsTitle>
           {howtWordsItemList.map((item, index) => (
-            <div key = {index}>
+            <div key={index}>
               <HotSearchWordsItem key={index}>
                 <span style={{ marginRight: "21px", color: "#EBFF00" }}>
                   {index + 1}
@@ -223,4 +223,14 @@ const SRawMaterialInput = styled.input`
     color: var(--TP-White, rgba(255, 255, 255, 0.5));
     font-weight: 400;
   }
+`;
+
+const NotificationImageContainer = styled.div`
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.3);
+
+  background-image: url('/assets/Product Image.png') center center;
 `;
