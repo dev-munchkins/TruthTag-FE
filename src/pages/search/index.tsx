@@ -5,7 +5,7 @@ import Select, { StylesConfig } from "react-select";
 import SearchIcon from "@assets/svg/Search.svg";
 import Line from "@assets/svg/Line 25.svg";
 
-const index = () => {
+function index() {
   const options = [
     { value: "상품명", label: "상품명" },
     { value: "원재료", label: "원재료" },
@@ -15,7 +15,6 @@ const index = () => {
 
   const howtWordsItemList = [0, 0, 0, 0, 0, 0, 0, 0];
 
-  console.log(selectedOption);
   return (
     <div style={{ padding: "0 24px" }}>
       <SearchHeader>
@@ -113,7 +112,7 @@ const index = () => {
       )}
     </div>
   );
-};
+}
 
 export default index;
 

@@ -111,7 +111,7 @@ const MyResponsiveLine = ({ data /* see data tab */ }: any) => (
   />
 );
 
-const index = () => {
+function index() {
   const router = useRouter();
   const [onClickListBtn, setOnClickListBtn] = useState(false);
   const dateData = [
@@ -146,7 +146,7 @@ const index = () => {
           </>
         ) : (
           <>
-            <BackArrowBlack onClick={() => router.back()}/>
+            <BackArrowBlack onClick={() => router.back()} />
             <MenuBlack />
           </>
         )}
@@ -222,7 +222,7 @@ const index = () => {
       </InfoSection>
     </div>
   );
-};
+}
 
 export default index;
 
