@@ -7,6 +7,7 @@ import { theme } from "@/styles/theme";
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 import { useRouter } from "next/router";
+import Footer from "./components/common/Footer";
 
 export default function Home() {
   const foodCategoryList = [
@@ -21,7 +22,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <>
+    <div style={{ height: "100vh", overflowY: "scroll" }}>
       <Header>
         <div>
           <LogoImg style={{ marginRight: "12px" }} />
@@ -65,7 +66,9 @@ export default function Home() {
       <ReviewSection>
         Trend <span>REVIEW</span>
       </ReviewSection>
-    </>
+
+      <Footer clicked="home" />
+    </div>
   );
 }
 
