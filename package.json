@@ -11,6 +11,7 @@
   "dependencies": {
     "@egjs/react-flicking": "^4.11.2",
     "@nivo/line": "^0.85.1",
+    "jslib-html5-camera-photo": "^3.3.4",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/jslib-html5-camera-photo": "^3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
