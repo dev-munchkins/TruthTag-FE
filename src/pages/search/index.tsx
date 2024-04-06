@@ -5,7 +5,7 @@ import Select, { StylesConfig } from "react-select";
 import SearchIcon from "@assets/svg/Search.svg";
 import Line from "@assets/svg/Line 25.svg";
 
-function index() {
+function Index() {
   const options = [
     { value: "상품명", label: "상품명" },
     { value: "원재료", label: "원재료" },
@@ -114,7 +114,7 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
 
 const SearchHeader = styled.div`
   padding: 8 24px;

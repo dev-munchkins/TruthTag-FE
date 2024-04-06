@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BackArrow from "@assets/svg/Arrow back ios new (1).svg";
 
-const index = () => {
+const Index = () => {
   return (
     <div style={{ padding: "0px 24px" }}>
       <Header>
@@ -20,7 +20,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
 
 const Header = styled.div`
   padding: 16px 0px;

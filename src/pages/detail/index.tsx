@@ -111,7 +111,7 @@ const MyResponsiveLine = ({ data /* see data tab */ }: any) => (
   />
 );
 
-function index() {
+function Index() {
   const router = useRouter();
   const [onClickListBtn, setOnClickListBtn] = useState(false);
   const dateData = [
@@ -224,7 +224,7 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
 
 const DetailHeader = styled.div<{ headerColorChange: boolean }>`
   width: 375px;
