@@ -8,6 +8,8 @@ import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 import { useRouter } from "next/router";
 import Footer from "./components/common/Footer";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 export default function Home() {
   const foodCategoryList = [
@@ -20,6 +22,17 @@ export default function Home() {
   ];
 
   const router = useRouter();
+
+  const queryClient = useQueryClient();
+
+  const getTodos = () =>
+    axios
+      .get(`api/v1/products/trend?category={category_id}`)
+      .then((response) => response.data);
+
+  const query = useQuery({ queryKey: ["todos"], queryFn: getTodos });
+
+  console.log(query);
 
   return (
     <div style={{ height: "100vh", overflowY: "scroll" }}>

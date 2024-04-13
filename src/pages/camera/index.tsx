@@ -6,6 +6,8 @@ function Camera() {
   const videoRef = useRef<HTMLVideoElement | null>(null); // HTMLVideoElement 타입을 명시합니다.
   const cameraPhotoRef = useRef<CameraPhoto | null>(null);
 
+  const config = {};
+
   useEffect(() => {
     // 컴포넌트가 마운트된 후 CameraPhoto 인스턴스 생성
     if (videoRef.current !== null) {
