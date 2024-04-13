@@ -32,7 +32,7 @@ function CameraApp() {
   function handleCameraStop() {
     console.log("handleCameraStop");
   }
-  const isFullscreen = false;
+  const isFullscreen =true;
 
   return (
     <>
