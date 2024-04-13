@@ -4,14 +4,14 @@ import "react-html5-camera-photo/build/css/index.css";
 import ImagePreview from "./ImagePreview";
 
 function CameraApp() {
-  const [dataUri, setDataUri] = useState(null);
-  function handleTakePhoto(dataUri: any) {
+  const [dataUri, setDataUri] = useState('');
+  function handleTakePhoto(dataUri: string) {
     // Do stuff with the photo...
     console.log("takePhoto");
     setDataUri(dataUri);
   }
 
-  function handleTakePhotoAnimationDone(dataUri: any) {
+  function handleTakePhotoAnimationDone(dataUri: string) {
     // Do stuff with the photo...
     console.log("takePhoto");
     setDataUri(dataUri);
@@ -40,11 +40,12 @@ function CameraApp() {
           <Camera
             onTakePhotoAnimationDone={handleTakePhotoAnimationDone}
             isFullscreen={isFullscreen}
+            idealFacingMode = {FACING_MODES.ENVIRONMENT}
           />
         )}
         <button
           onClick={() => {
-            setDataUri(null);
+            setDataUri('');
           }}
         >
           다시찍기
