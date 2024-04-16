@@ -11,6 +11,7 @@ import LikeBtn from "@assets/svg/Favorite Button.svg";
 import DateBtn from "@assets/svg/Keyboard arrow down.svg";
 import Line from "@assets/svg/Line 25.svg";
 import MaterialAddIcon from "@assets/svg/Add circle.svg";
+import MaterialDeleteIcon from "@assets/svg/MaterialDelete Icon.svg";
 import MaterialRemoveIcon from "@assets/svg/Remove circle.svg";
 import Select from "react-select";
 
@@ -22,29 +23,57 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import Footer from "@pages/components/common/Footer";
 
-const data = [
+const capacityData = [
   {
     id: "용량",
     data: [
       {
-        x: "3월 1주차", //string
-        y: 142,
+        x: "2024/02/19", //string
+        y: 41,
       },
       {
-        x: "2023/05/28",
-        y: 23,
+        x: "2024/03/04",
+        y: 39,
       },
       {
-        x: "3월",
-        y: 198,
+        x: "2024/03/18",
+        y: 39,
       },
       {
-        x: "4월",
-        y: 192,
+        x: "2024/04/01",
+        y: 37,
       },
       {
-        x: "5월",
-        y: 101,
+        x: "2024/04/15",
+        y: 37,
+      },
+    ],
+  },
+];
+
+const priceData = [
+  {
+    id: "가격",
+    data: [
+      {
+        x: "2024/02/19", //string
+        y: 1600,
+      },
+      {
+        x: "2024/03/04",
+        y: 1600,
+      },
+      {
+        x: "2024/03/18",
+        y: 1800,
+      },
+      {
+        x: "2024/04/01",
+        y: 1800,
+      },
+      {
+        x: "2024/04/15",
+        y: 1800,
       },
     ],
   },
@@ -143,8 +172,9 @@ function Index() {
   const router = useRouter();
   const [onClickListBtn, setOnClickListBtn] = useState(false);
   const dateData = [
-    { value: "4월 넷째주", label: "4월 넷째주" },
-    { value: "4월 넷째주", label: "4월 셋째주" },
+    { value: "2024/04/08", label: "2024/04/08" },
+    { value: "2024/03/12", label: "2024/03/12" },
+    { value: "2024/02/11", label: "2024/02/11" },
   ];
 
   const [headerColorChange, setHeaderColorChange] = useState(false);
@@ -165,7 +195,9 @@ function Index() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "white", height: '100vh', overflowY: 'scroll' }}>
+    <div
+      style={{ backgroundColor: "white", height: "100vh", overflowY: "scroll" }}
+    >
       <DetailHeader headerColorChange={headerColorChange}>
         {headerColorChange ? (
           <>
@@ -184,14 +216,14 @@ function Index() {
 
       <InfoSection>
         <InfoTitle>
-          최고의 컵라면
+          컵누들 매콤한 맛 소컵
           <div>
             <ChatBotBtn style={{ marginRight: "16px" }} />
             <LikeBtn />
           </div>
         </InfoTitle>
         <InfoTagSection>
-          <span style={{ marginRight: "8px" }}>아주 맛있다</span>{" "}
+          <span style={{ marginRight: "8px" }}>오뚜기</span>{" "}
           <InfoTag>컵라면</InfoTag>
         </InfoTagSection>
 
@@ -199,17 +231,15 @@ function Index() {
           <PriceAmountTitle>가격 / 용량</PriceAmountTitle>
         </PriceAmountTitleContainer>
         <ChartContainer>
-          <MyResponsiveLine data={data} />
+          <MyResponsiveLine data={priceData} />
         </ChartContainer>
         <ChartContainer>
-          <MyResponsiveLine data={data} />
+          <MyResponsiveLine data={capacityData} />
         </ChartContainer>
 
         <RawMaterialTitle>
           원재료
           <RawMaterialDateButton>
-            2024-03-26
-            <DateBtn />
             <Select
               className="basic-single"
               classNamePrefix="select"
@@ -221,11 +251,29 @@ function Index() {
               isSearchable={false}
               name="color"
               options={dateData}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: "darkgray",
+                  primary: "white",
+                  neutral0: "black",
+                  neutral20: "white",
+                  neutral30: "white",
+                  neutral40: "white",
+                  neutral50: "white",
+                  neutral60: "white",
+                  neutral70: "white",
+                  neutral80: "white",
+                  neutral90: "white",
+                },
+              })}
             />
           </RawMaterialDateButton>
         </RawMaterialTitle>
         <RawMaterialList onClickListBtn={onClickListBtn}>
-          {[0, 0, 0, 0, 0, 0, 0, 0].map((item, key) => (
+          {["순한간장분말", "피쉬콜라겐", "건미역"].map((item, key) => (
             <RawMaterialItem key={key}>
               <div
                 style={{
@@ -235,8 +283,45 @@ function Index() {
                   width: "327px",
                 }}
               >
-                <div>인스턴트건조이스트</div>
+                <div style={{ color: "#50E82A" }}>{item}</div>
                 <MaterialAddIcon />
+              </div>
+              <Line />
+            </RawMaterialItem>
+          ))}
+          {["건파", "건조꽃맛살어묵"].map((item, key) => (
+            <RawMaterialItem key={key}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "327px",
+                }}
+              >
+                <div style={{ color: "#E82A58" }}>{item}</div>
+                <MaterialDeleteIcon />
+              </div>
+              <Line />
+            </RawMaterialItem>
+          ))}
+          {[
+            "당면",
+            "설탕",
+            "간장분말",
+            "진한감칠맛분",
+            "쇠고기육수분말",
+          ].map((item, key) => (
+            <RawMaterialItem key={key}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "327px",
+                }}
+              >
+                <div>{item}</div>
               </div>
               <Line />
             </RawMaterialItem>

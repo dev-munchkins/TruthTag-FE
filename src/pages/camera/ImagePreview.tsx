@@ -116,7 +116,7 @@ const RetryButtonContainer = styled.button`
 
   margin-left: 170px;
 
-  margin-top: 500px;
+  margin-top: 550px;
   position: absolute;
 `;
 

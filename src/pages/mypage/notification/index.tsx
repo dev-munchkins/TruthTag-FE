@@ -21,7 +21,7 @@ const Index = () => {
 
       {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, key) => (
         <div key={key}>
-          <NotificationItem>
+          <NotificationItem onClick={() => router.push("/detail")}>
             <ImageContainer>
               <SkimIcon style={{ marginTop: "8px" }} />
             </ImageContainer>
@@ -80,8 +80,7 @@ const ImageContainer = styled.div`
   height: 60px;
 
   border-radius: 100px;
-  background-image: url("");
-  background: rgba(0, 0, 0, 0.3);
+  background: url(/assets/svg/camera-sample-food.svg) center center;
 
   display: flex;
   align-items: center;

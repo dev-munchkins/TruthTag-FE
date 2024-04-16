@@ -16,7 +16,16 @@ function Index() {
 
   const [selectedOption, setSelectedOption] = useState(options[1]);
 
-  const howtWordsItemList = [0, 0, 0, 0, 0, 0, 0, 0];
+  const howtWordsItemList = [
+    "컵누들 매콤한 맛 소컵",
+    "자유시간",
+    "비비고 육개장",
+    "고향만두",
+    "동원 참치 마일드",
+    "더 건강한 햄",
+    "서울우유 고단백 치즈",
+    "아몬드 브리즈 초콜릿",
+  ];
 
   return (
     <div style={{ padding: "0 24px", height: "100vh", overflowY: "scroll" }}>

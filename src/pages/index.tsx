@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Footer from "./components/common/Footer";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import SampleImage from "@assets/svg/camera-sample-food.svg";
 
 export default function Home() {
   const foodCategoryList = [
@@ -69,11 +70,19 @@ export default function Home() {
           <CarouselItemTitle>
             최근에 <span>SHRINK</span>된,
           </CarouselItemTitle>
+          <CarouselItemInfo>
+            <div>오뚜기</div>
+            <div>컵누들 매콤한 맛</div>
+          </CarouselItemInfo>
         </CarouselItem>
         <CarouselItem className="panel" style={{ color: "white" }}>
           <CarouselItemTitle>
             <span>즐겨찾기</span>하기 좋은!
           </CarouselItemTitle>
+          <CarouselItemInfo>
+            <div>오뚜기</div>
+            <div>컵누들 매콤한 맛</div>
+          </CarouselItemInfo>
         </CarouselItem>
       </Flicking>
       <ReviewSection>
@@ -123,7 +132,7 @@ const CarouselItem = styled.div`
   width: 327px;
   height: 422px;
   border-radius: 15px;
-  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  background: url(assets/svg/camera-sample-food.svg) lightgray 50% / cover no-repeat;
   box-shadow: 0px -150px 100px 10px rgba(0, 0, 0, 0.5) inset;
   margin-right: 12px;
   padding: 0 32px;
