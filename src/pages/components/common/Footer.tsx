@@ -121,7 +121,7 @@ const SFooter = styled.div<{ padding: boolean | undefined }>`
 
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 
   z-index: 1;
