@@ -7,7 +7,7 @@ import { theme } from "@/styles/theme";
 import Flicking from "@egjs/react-flicking";
 import "@egjs/react-flicking/dist/flicking.css";
 import { useRouter } from "next/router";
-import Footer from "./components/common/Footer";
+import Footer from "../components/common/Footer";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import SampleImage from "@assets/svg/camera-sample-food.svg";
@@ -132,7 +132,8 @@ const CarouselItem = styled.div`
   width: 327px;
   height: 422px;
   border-radius: 15px;
-  background: url(assets/svg/camera-sample-food.svg) lightgray 50% / cover no-repeat;
+  background: url(assets/svg/camera-sample-food.svg) lightgray 50% / cover
+    no-repeat;
   box-shadow: 0px -150px 100px 10px rgba(0, 0, 0, 0.5) inset;
   margin-right: 12px;
   padding: 0 32px;

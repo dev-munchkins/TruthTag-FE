@@ -11522,6 +11522,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-chatbot-kit@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "react-chatbot-kit@npm:2.2.2"
+  dependencies:
+    react-conditionally-render: "npm:^1.0.2"
+  checksum: 10c0/61f66de3c61cb4d5ae3c3d9a59d3e9713b22ba5529df82684eed3b861af456030eda63725fe9b9f3834897de9f86a8abd2de5a46f78bf42dbeed191a57ff709e
+  languageName: node
+  linkType: hard
+
 "react-colorful@npm:^5.1.2":
   version: 5.6.1
   resolution: "react-colorful@npm:5.6.1"
@@ -11529,6 +11538,13 @@ __metadata:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
   checksum: 10c0/48eb73cf71e10841c2a61b6b06ab81da9fffa9876134c239bfdebcf348ce2a47e56b146338e35dfb03512c85966bfc9a53844fc56bc50154e71f8daee59ff6f0
+  languageName: node
+  linkType: hard
+
+"react-conditionally-render@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "react-conditionally-render@npm:1.0.2"
+  checksum: 10c0/2498ef217dcd4171da26a210fe2bdda72ac6eefeef58df3aabe838c48b23964e49672fbbbf04605808948c4333608fcb270bbc01b3f830f60b36e09fad11ad49
   languageName: node
   linkType: hard
 
@@ -13221,6 +13237,7 @@ __metadata:
     jslib-html5-camera-photo: "npm:^3.3.4"
     next: "npm:14.1.4"
     react: "npm:^18"
+    react-chatbot-kit: "npm:^2.2.2"
     react-dom: "npm:^18"
     react-dropdown: "npm:^1.11.0"
     react-html5-camera-photo: "npm:^1.5.11"

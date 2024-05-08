@@ -5,7 +5,7 @@ import Select, { StylesConfig } from "react-select";
 import SearchIcon from "@assets/svg/Search.svg";
 import Line from "@assets/svg/Line 25.svg";
 import { useRouter } from "next/router";
-import Footer from "@pages/components/common/Footer";
+import Footer from "@components/common/Footer";
 
 function Index() {
   const router = useRouter();

@@ -21,7 +21,7 @@ const ResponsiveLine = dynamic(
 );
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import Footer from "@pages/components/common/Footer";
+import Footer from "@components/common/Footer";
 
 const capacityData = [
   {
@@ -305,27 +305,23 @@ function Index() {
               <Line />
             </RawMaterialItem>
           ))}
-          {[
-            "당면",
-            "설탕",
-            "간장분말",
-            "진한감칠맛분",
-            "쇠고기육수분말",
-          ].map((item, key) => (
-            <RawMaterialItem key={key}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "327px",
-                }}
-              >
-                <div>{item}</div>
-              </div>
-              <Line />
-            </RawMaterialItem>
-          ))}
+          {["당면", "설탕", "간장분말", "진한감칠맛분", "쇠고기육수분말"].map(
+            (item, key) => (
+              <RawMaterialItem key={key}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "327px",
+                  }}
+                >
+                  <div>{item}</div>
+                </div>
+                <Line />
+              </RawMaterialItem>
+            )
+          )}
         </RawMaterialList>
         <ListBtnContainer onClickListBtn={onClickListBtn}>
           <RawMaterialListBtn
