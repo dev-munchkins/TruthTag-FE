@@ -27,6 +27,13 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/chat/MessageParser.jsx", "src/pages/chat/ActionProvider.jsx", "src/pages/chat/config.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/chat/MessageParser.jsx",
+    "src/pages/chat/ActionProvider.jsx",
+    "src/components/config.js"
+  ],
   "exclude": ["node_modules"]
 }

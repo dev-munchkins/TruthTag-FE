@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import styled from "styled-components";
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
-import config from "./config.js";
+import config from "../../components/config.js";
 import MessageParser from "./MessageParser.jsx";
 import ActionProvider from "./ActionProvider.jsx";
 import HomeIcon from "@assets/svg/Home.svg";

@@ -1,5 +1,5 @@
 import { createChatBotMessage } from "react-chatbot-kit";
-import FoundItem from "./FoundItem";
+import FoundItem from "../pages/chat/FoundItem";
 
 const config = {
   initialMessages: [
