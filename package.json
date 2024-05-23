@@ -23,6 +23,7 @@
     "react-dropdown": "^1.11.0",
     "react-html5-camera-photo": "^1.5.11",
     "react-select": "^5.8.0",
+    "react-toastify": "^10.0.5",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {

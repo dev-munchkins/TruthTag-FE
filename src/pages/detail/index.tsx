@@ -14,6 +14,11 @@ import MaterialAddIcon from "@assets/svg/Add circle.svg";
 import MaterialDeleteIcon from "@assets/svg/MaterialDelete Icon.svg";
 import MaterialRemoveIcon from "@assets/svg/Remove circle.svg";
 import Select from "react-select";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ProfileImage from "@assets/svg/profile_image_review.svg";
+import LikeIcon from "@assets/svg/thumb_up.svg";
+import ProductImage from "@assets/svg/rectangle_product_image.svg";
 
 const ResponsiveLine = dynamic(
   () => import("@nivo/line").then((m) => m.ResponsiveLine),
@@ -57,19 +62,19 @@ const priceData = [
     data: [
       {
         x: "2024/02/19", //string
-        y: 1600,
+        y: 1100,
       },
       {
         x: "2024/03/04",
-        y: 1600,
+        y: 1200,
       },
       {
         x: "2024/03/18",
-        y: 1800,
+        y: 1400,
       },
       {
         x: "2024/04/01",
-        y: 1800,
+        y: 1500,
       },
       {
         x: "2024/04/15",
@@ -81,6 +86,7 @@ const priceData = [
 
 const MyResponsiveLine = ({ data /* see data tab */ }: any) => (
   <ResponsiveLine
+    colors={{ scheme: "greens" }}
     theme={{
       axis: {
         domain: {
@@ -169,6 +175,18 @@ const MyResponsiveLine = ({ data /* see data tab */ }: any) => (
 );
 
 function Index() {
+  useEffect(() => {
+    // 10초 후에 토스트를 띄우는 타이머 설정
+    const timer = setTimeout(() => {
+      toast.success("컵누들 매콤한 맛에서 스킴플레이션이 발생하였습니다!", {
+        position: "bottom-center",
+      });
+    }, 20000); // 10000ms = 10 seconds
+
+    // 컴포넌트가 언마운트될 때 타이머를 클리어
+    return () => clearTimeout(timer);
+  }, []);
+
   const router = useRouter();
   const [onClickListBtn, setOnClickListBtn] = useState(false);
   const dateData = [
@@ -228,15 +246,16 @@ function Index() {
         </InfoTagSection>
 
         <PriceAmountTitleContainer>
-          <PriceAmountTitle>가격 / 용량</PriceAmountTitle>
+          <PriceAmountTitle>가격</PriceAmountTitle>
         </PriceAmountTitleContainer>
         <ChartContainer>
           <MyResponsiveLine data={priceData} />
         </ChartContainer>
+        {/*
         <ChartContainer>
           <MyResponsiveLine data={capacityData} />
         </ChartContainer>
-
+      */}
         <RawMaterialTitle>
           원재료
           <RawMaterialDateButton>
@@ -328,8 +347,33 @@ function Index() {
             onClick={() => setOnClickListBtn(!onClickListBtn)}
           />
         </ListBtnContainer>
+        <SReviewHeader>리뷰</SReviewHeader>
+        <SReviewContainer>
+        <ReviewContainer>
+          <ReviewHeader>
+            <ReviewHeaderText>
+              <ProfileImage />
+              <div style={{ marginLeft: "12px" }}>코딩 마법사 2024.02.02</div>
+            </ReviewHeaderText>
+            <ReviewLikeButton>
+              <LikeIcon style={{ marginRight: "6px" }} />
+              17
+            </ReviewLikeButton>
+          </ReviewHeader>
+          <ReviewContent>
+            <ReviewText>
+              몇 년동안 스킴, 슈링크 플레이션이 없어서 너무 좋아요~ 역시 착한
+              기업 갓뚜기 제품!! 앞으로도 재구매 의사 100%입니다!
+            </ReviewText>
+            <ProductImage />
+          </ReviewContent>
+
+        </ReviewContainer>
+      </SReviewContainer>
+
       </InfoSection>
 
+      <ToastContainer onClick={() => router.push("/mypage/notification")} />
       <Footer clicked="home" padding />
     </div>
   );
@@ -505,4 +549,112 @@ const ListBtnContainer = styled.div<{ onClickListBtn: boolean }>`
   padding-top: ${(props) => (!props.onClickListBtn ? "0px" : "20px")};
 
   transform: ${(props) => (props.onClickListBtn ? "rotate(180deg)" : "")};
+`;
+
+const SReviewHeader = styled.div`
+  color: var(--True-White, #fff);
+  font-family: "Noto Sans KR";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 140% */
+
+  margin-top: 24px;
+  margin-bottom: 12px;
+`;
+
+
+const SReviewContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-top: 16px;
+`;
+
+const ReviewContainer = styled.div`
+  width: 327px;
+  height: 148px;
+  border-radius: 10px;
+  background: var(--True-Light-BlueBlack, #191a1f);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+`;
+
+const ReviewHeader = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #7d7f82;
+
+  font-family: "Noto Sans KR";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  margin-bottom: 12px;
+`;
+
+const ReviewHeaderText = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ReviewLikeButton = styled.button`
+  width: 54px;
+  height: 24px;
+  border-radius: 100px;
+  background: #878787;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--True-White, var(--True-White, #fff));
+  text-align: right;
+  font-family: "Noto Sans KR";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px; /* 100% */
+`;
+
+const ReviewContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+`;
+
+const ReviewText = styled.div`
+  width: 207px;
+  height: 72px;
+
+  color: var(--True-White, var(--True-White, #fff));
+  font-family: "Noto Sans KR";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.24px;
+`;
+
+const ReviewLandingButton = styled.div`
+  width: 295px;
+  height: 40px;
+  border-radius: 100px;
+  border: 0.5px solid var(--True-White, #fff);
+
+  padding: 8px;
+
+  color: var(--True-White, var(--True-White, #fff));
+  font-family: "Noto Sans KR";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

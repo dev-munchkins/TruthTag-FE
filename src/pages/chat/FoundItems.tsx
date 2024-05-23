@@ -1,9 +1,26 @@
 import React from "react";
+import FoundItem from "./FoundItem";
 import styled from "styled-components";
 
-const FoundItem = (props: any) => {
+const FoundItems = (props: any) => {
   return (
     <FoundItemWrapper>
+      <ProductInfoWrapper>
+        <ItemImage />
+        <ItemText>
+          <ItemTitle>컵누들 매콤한 맛</ItemTitle>
+          <ItemFirm>오뚜기</ItemFirm>
+          <ItemReview>리뷰 (365)</ItemReview>
+        </ItemText>
+      </ProductInfoWrapper>
+      <ProductInfoWrapper>
+        <ItemImage />
+        <ItemText>
+          <ItemTitle>컵누들 매콤한 맛</ItemTitle>
+          <ItemFirm>오뚜기</ItemFirm>
+          <ItemReview>리뷰 (365)</ItemReview>
+        </ItemText>
+      </ProductInfoWrapper>
       <ProductInfoWrapper>
         <ItemImage />
         <ItemText>
@@ -17,20 +34,30 @@ const FoundItem = (props: any) => {
           onClick={() => {
             props.setState((prev: any) => ({
               ...prev,
-              yesButtonClicked: true,
+              thanksButtonClicked: true,
             }));
-            props.actions.handleYesButton();
+            props.actions.handleThanksButton();
           }}
         >
-          응, 딱 맞아!
+          고마워, 충분해!
         </Button>
-        <Button>아냐, 틀렸어.</Button>
+        <Button
+          onClick={() => {
+            props.setState((prev: any) => ({
+              ...prev,
+              showMoreButtonClicked: true,
+            }));
+            props.actions.handleShowMoreButton();
+          }}
+        >
+          다른 상품도 보여줘.
+        </Button>
       </div>
     </FoundItemWrapper>
   );
 };
 
-export default FoundItem;
+export default FoundItems;
 
 const ProductInfoWrapper = styled.div`
   width: 234px;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LogoImg from "@assets/svg/Vector.svg";
 import styled from "styled-components";
 import Select, { StylesConfig } from "react-select";
@@ -6,6 +6,8 @@ import SearchIcon from "@assets/svg/Search.svg";
 import Line from "@assets/svg/Line 25.svg";
 import { useRouter } from "next/router";
 import Footer from "@components/common/Footer";
+import ResultProductImage from "@assets/svg/rectangle_product_image.svg";
+import ProductHeart from "@assets/svg/favorite_gray.svg";
 
 function Index() {
   const router = useRouter();
@@ -14,7 +16,18 @@ function Index() {
     { value: "원재료", label: "원재료" },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(options[1]);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [productId, setProductId] = useState("");
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChange = (event: any) => {
+    setSearchValue(event.target.value);
+  };
+
+  useEffect(() => {
+    setSearchValue("");
+  }, [selectedOption]);
 
   const howtWordsItemList = [
     "컵누들 매콤한 맛 소컵",
@@ -26,6 +39,17 @@ function Index() {
     "서울우유 고단백 치즈",
     "아몬드 브리즈 초콜릿",
   ];
+
+  useEffect(() => {
+    if (productId !== "") {
+      router.push(`/search?id=${productId}`);
+    }
+  }, [productId]);
+
+  useEffect(() => {
+    setProductId("");
+    router.push(`/search`);
+  }, [selectedOption]);
 
   return (
     <div style={{ padding: "0 24px", height: "100vh", overflowY: "scroll" }}>
@@ -94,33 +118,96 @@ function Index() {
               }),
             }}
           />
-          <SearchField placeholder="찾으시는 상품이 무엇인가요?"></SearchField>
-          <SearchIcon />
+          <SearchField
+            placeholder="찾으시는 상품이 무엇인가요?"
+            value={searchValue}
+            onChange={handleChange}
+          ></SearchField>
+          <SearchIcon
+            onClick={() => {
+              setProductId("1");
+            }}
+          />
         </SearchBar>
       </SearchHeader>
 
       {selectedOption.value === "상품명" ? (
         <HotSearchWordsSection>
-          <HotSearchWordsTitle>인기 검색어</HotSearchWordsTitle>
-          {howtWordsItemList.map((item, index) => (
-            <div key={index}>
-              <HotSearchWordsItem key={index}>
-                <span style={{ marginRight: "21px", color: "#EBFF00" }}>
-                  {index + 1}
-                </span>
-                {item}
-                {howtWordsItemList.length - 1 === index ? <></> : <Line />}
-              </HotSearchWordsItem>
-            </div>
-          ))}
+          {productId === "" ? (
+            <>
+              <HotSearchWordsTitle>인기 검색어</HotSearchWordsTitle>
+              {howtWordsItemList.map((item, index) => (
+                <div key={index}>
+                  <HotSearchWordsItem key={index}>
+                    <span style={{ marginRight: "21px", color: "#EBFF00" }}>
+                      {index + 1}
+                    </span>
+                    {item}
+                    {howtWordsItemList.length - 1 === index ? <></> : <Line />}
+                  </HotSearchWordsItem>
+                </div>
+              ))}{" "}
+            </>
+          ) : (
+            <>
+              <ResultHeader>
+                <SResultTitle>결과</SResultTitle>
+                <SResultLength>1</SResultLength>
+                <SResultContainer onClick={() => router.push("/detail")}>
+                  <ResultProductImage />
+                  <SContent>
+                    <SProductName>컵누들 매콤한 맛</SProductName>
+                    <SProductFirm>오뚜기</SProductFirm>
+                    <SReview>리뷰 (10)</SReview>
+                  </SContent>
+                  <SHeartButtonContainer>
+                    <ProductHeart />
+                  </SHeartButtonContainer>
+                </SResultContainer>
+              </ResultHeader>
+            </>
+          )}
         </HotSearchWordsSection>
       ) : (
-        <RawMaterialSection>
-          <RawMaterialTitle>포함할 원재료</RawMaterialTitle>
-          <SRawMaterialInput placeholder="검색에 포함할 원재료를 입력해주세요!"></SRawMaterialInput>
-          <RawMaterialTitle>제외할 원재료</RawMaterialTitle>
-          <SRawMaterialInput placeholder="검색에 제외할 원재료를 입력해주세요!"></SRawMaterialInput>
-        </RawMaterialSection>
+        <>
+          {productId === "" ? (
+            <RawMaterialSection>
+              <RawMaterialTitle>포함할 원재료</RawMaterialTitle>
+              <SRawMaterialInput placeholder="검색에 포함할 원재료를 입력해주세요!"></SRawMaterialInput>
+              <RawMaterialTitle>제외할 원재료</RawMaterialTitle>
+              <SRawMaterialInput placeholder="검색에 제외할 원재료를 입력해주세요!"></SRawMaterialInput>
+            </RawMaterialSection>
+          ) : (
+            <>
+              <ResultHeader>
+                <SResultTitle>결과</SResultTitle>
+                <SResultLength>2</SResultLength>
+                <SResultContainer onClick={() => router.push("/detail")}>
+                  <ResultProductImage />
+                  <SContent>
+                    <SProductName>컵누들 매콤한 맛</SProductName>
+                    <SProductFirm>오뚜기</SProductFirm>
+                    <SReview>리뷰 (10)</SReview>
+                  </SContent>
+                  <SHeartButtonContainer>
+                    <ProductHeart />
+                  </SHeartButtonContainer>
+                </SResultContainer>
+              </ResultHeader>
+              <SResultContainer onClick={() => router.push("/detail")}>
+                <ItemImage2 />
+                <SContent>
+                  <SProductName>누들핏 육개장 맛</SProductName>
+                  <SProductFirm>농심</SProductFirm>
+                  <SReview>리뷰 (5)</SReview>
+                </SContent>
+                <SHeartButtonContainer>
+                  <ProductHeart />
+                </SHeartButtonContainer>
+              </SResultContainer>
+            </>
+          )}
+        </>
       )}
 
       <Footer clicked="home" />
@@ -247,4 +334,97 @@ const NotificationImageContainer = styled.div`
   background: rgba(0, 0, 0, 0.3);
 
   background-image: url("/assets/Product Image.png") center center;
+`;
+
+const ResultHeader = styled.div`
+  padding: 10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;
+
+const SResultTitle = styled.span`
+  color: var(--True-White, var(--True-White, #fff));
+  text-align: center;
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 225% */
+  margin-right: 7px;
+`;
+
+const SResultLength = styled.span`
+  color: var(--TP-White, rgba(255, 255, 255, 0.5));
+  text-align: center;
+  font-family: "Noto Sans KR";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px; /* 300% */
+`;
+
+const SResultContainer = styled.div`
+  width: 327px;
+  height: 104px;
+  border-radius: 10px;
+  background: var(--True-Light-BlueBlack, #191a1f);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  padding: 16px;
+  gap: 18px;
+
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const SContent = styled.div``;
+
+const SProductName = styled.div`
+  color: var(--True-White, var(--True-White, #fff));
+  font-family: "Noto Sans KR";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+`;
+
+const SProductFirm = styled.div`
+  color: var(--True-White, var(--True-White, #fff));
+  font-family: "Noto Sans KR";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 175% */
+`;
+
+const SReview = styled.div`
+  color: var(--TP-White, rgba(255, 255, 255, 0.5));
+  font-family: "Noto Sans KR";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.2px;
+
+  margin-top: 10px;
+`;
+
+const SHeartButtonContainer = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: var(--True-Gray, #7d7f82);
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 65px;
+`;
+
+const ItemImage2 = styled.div`
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  background: url(assets/svg/ResourceReplaceImage.svg) lightgray 50% / cover
+    no-repeat;
 `;

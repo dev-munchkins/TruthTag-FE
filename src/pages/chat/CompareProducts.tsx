@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const FoundItem = (props: any) => {
+const CompareProducts = (props: any) => {
   return (
     <FoundItemWrapper>
       <ProductInfoWrapper>
@@ -12,6 +12,14 @@ const FoundItem = (props: any) => {
           <ItemReview>리뷰 (365)</ItemReview>
         </ItemText>
       </ProductInfoWrapper>
+      <ProductInfoWrapper>
+        <ItemImage2 />
+        <ItemText>
+          <ItemTitle>누들핏 육개장 맛</ItemTitle>
+          <ItemFirm>농심</ItemFirm>
+          <ItemReview>리뷰 (200)</ItemReview>
+        </ItemText>
+      </ProductInfoWrapper>
       <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
         <Button
           onClick={() => {
@@ -19,7 +27,7 @@ const FoundItem = (props: any) => {
               ...prev,
               yesButtonClicked: true,
             }));
-            props.actions.handleYesButton();
+            props.actions.handleCompareYesButton();
           }}
         >
           응, 딱 맞아!
@@ -30,7 +38,7 @@ const FoundItem = (props: any) => {
   );
 };
 
-export default FoundItem;
+export default CompareProducts;
 
 const ProductInfoWrapper = styled.div`
   width: 234px;
@@ -49,6 +57,14 @@ const ItemImage = styled.div`
   height: 72px;
   border-radius: 10px;
   background: url(assets/svg/camera-sample-food.svg) lightgray 50% / cover
+    no-repeat;
+`;
+
+const ItemImage2 = styled.div`
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  background: url(assets/svg/ResourceReplaceImage.svg) lightgray 50% / cover
     no-repeat;
 `;
 

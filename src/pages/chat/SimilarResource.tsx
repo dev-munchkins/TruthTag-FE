@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const FoundItem = (props: any) => {
+const SimilarResource = (props: any) => {
   return (
     <FoundItemWrapper>
       <ProductInfoWrapper>
@@ -17,9 +17,9 @@ const FoundItem = (props: any) => {
           onClick={() => {
             props.setState((prev: any) => ({
               ...prev,
-              yesButtonClicked: true,
+              yesResourceButtonClicked: true,
             }));
-            props.actions.handleYesButton();
+            props.actions.handleResourceYesButton();
           }}
         >
           응, 딱 맞아!
@@ -30,7 +30,7 @@ const FoundItem = (props: any) => {
   );
 };
 
-export default FoundItem;
+export default SimilarResource;
 
 const ProductInfoWrapper = styled.div`
   width: 234px;

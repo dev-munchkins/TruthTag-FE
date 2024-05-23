@@ -8,6 +8,7 @@ import ShrinkUpIcon from "@assets/svg/Trending up.svg";
 import ShrinkDownIcon from "@assets/svg/Trending down.svg";
 import { useRouter } from "next/router";
 import Footer from "@components/common/Footer";
+import ShrinkIcon from "@assets/svg/Trending down.svg";
 
 const Index = () => {
   const router = useRouter();
@@ -19,25 +20,50 @@ const Index = () => {
         <div style={{ width: "24px" }}></div>
       </Header>
 
-      {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, key) => (
-        <div key={key}>
-          <NotificationItem onClick={() => router.push("/detail")}>
-            <ImageContainer>
-              <SkimIcon style={{ marginTop: "8px" }} />
-            </ImageContainer>
+      <NotificationItem onClick={() => router.push("/detail")}>
+        <ImageContainer>
+          <SkimIcon style={{ marginTop: "8px" }} />
+        </ImageContainer>
+        <InfoSection>
+          <InfoTitle>
+            <SkimShrinkTag>SKIM</SkimShrinkTag>
+            <Date>2024.05.23</Date>
+          </InfoTitle>
+          <InfoContent>
+            <span>컵누들 매콤한 맛</span>의 원재료가 변경되었어요!
+          </InfoContent>
+        </InfoSection>
+      </NotificationItem>
 
-            <InfoSection>
-              <InfoTitle>
-                <SkimShrinkTag>Skim</SkimShrinkTag>
-                <Date>2024.02.02</Date>
-              </InfoTitle>
-              <InfoContent>
-                <span>컵누들</span>의 원재료가 변경되었어요!
-              </InfoContent>
-            </InfoSection>
-          </NotificationItem>
-        </div>
-      ))}
+      <NotificationItem onClick={() => router.push("/detail")}>
+        <ImageContainer>
+          <SkimIcon style={{ marginTop: "8px" }} />
+        </ImageContainer>
+        <InfoSection>
+          <InfoTitle>
+            <SkimShrinkTag>SKIM</SkimShrinkTag>
+            <Date>2024.02.02</Date>
+          </InfoTitle>
+          <InfoContent>
+            <span>컵누들 매콤한 맛</span>의 원재료가 변경되었어요!
+          </InfoContent>
+        </InfoSection>
+      </NotificationItem>
+
+      <NotificationItem onClick={() => router.push("/detail")}>
+        <ImageContainer2>
+          <ShrinkIcon style={{ marginTop: "8px" }} />
+        </ImageContainer2>
+        <InfoSection>
+          <InfoTitle>
+            <SkimShrinkTag style={{ padding: "0px 5px" }}>SHRINK</SkimShrinkTag>
+            <Date>2024.02.02</Date>
+          </InfoTitle>
+          <InfoContent>
+            <span>누들핏 육개장 맛</span>의 용량이 변경되었어요!
+          </InfoContent>
+        </InfoSection>
+      </NotificationItem>
 
       <Footer clicked="mypage" />
     </div>
@@ -81,6 +107,22 @@ const ImageContainer = styled.div`
 
   border-radius: 100px;
   background: url(/assets/svg/camera-sample-food.svg) center center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ImageContainer2 = styled.div`
+  width: 60px;
+  height: 60px;
+
+  border-radius: 100px;
+  background: url(/assets/svg/ResourceReplaceImage.svg) center center;
+
+  background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조정합니다 */
+  background-repeat: no-repeat; /* 배경 이미지가 반복되지 않도록 설정합니다 */
+  background-position: center; 
 
   display: flex;
   align-items: center;
