@@ -41,7 +41,7 @@ function CameraApp() {
         <TagIcon />
       </SImageSearchTitle>
 
-      <div style={{ height: "90vh" }}>
+      <div style={{ height: "98vh" }}>
         {dataUri ? (
           <ImagePreview
             dataUri={dataUri}
