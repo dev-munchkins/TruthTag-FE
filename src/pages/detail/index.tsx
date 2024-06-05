@@ -182,7 +182,7 @@ function Index() {
       toast.success("컵누들 매콤한 맛에서 스킴플레이션이 발생하였습니다!", {
         position: "bottom-center",
       });
-    }, 15000); // 10000ms = 10 seconds
+    }, 10000); // 10000ms = 10 seconds
 
     // 컴포넌트가 언마운트될 때 타이머를 클리어
     return () => clearTimeout(timer);
