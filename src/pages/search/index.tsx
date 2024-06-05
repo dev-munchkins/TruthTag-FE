@@ -30,7 +30,7 @@ function Index() {
   }, [selectedOption]);
 
   const howtWordsItemList = [
-    "컵누들 매콤한 맛 소컵",
+    "컵누들 매콤한 맛",
     "자유시간",
     "비비고 육개장",
     "고향만두",

@@ -8,6 +8,7 @@ import MenuWhite from "@assets/svg/Menu (1).svg";
 import SampleImg from "@assets/Product Image.png";
 import ChatBotBtn from "@assets/svg/ChatBot Button.svg";
 import LikeBtn from "@assets/svg/Favorite Button.svg";
+import FilledLikeBtn from "@assets/svg/Favorite Button (1).svg";
 import DateBtn from "@assets/svg/Keyboard arrow down.svg";
 import Line from "@assets/svg/Line 25.svg";
 import MaterialAddIcon from "@assets/svg/Add circle.svg";
@@ -42,15 +43,15 @@ const capacityData = [
       },
       {
         x: "2024/03/18",
-        y: 39,
+        y: 38.5,
       },
       {
         x: "2024/04/01",
-        y: 37,
+        y: 38.2,
       },
       {
         x: "2024/04/15",
-        y: 37,
+        y: 37.8,
       },
     ],
   },
@@ -181,14 +182,19 @@ function Index() {
       toast.success("컵누들 매콤한 맛에서 스킴플레이션이 발생하였습니다!", {
         position: "bottom-center",
       });
-    }, 20000); // 10000ms = 10 seconds
+    }, 15000); // 10000ms = 10 seconds
 
     // 컴포넌트가 언마운트될 때 타이머를 클리어
     return () => clearTimeout(timer);
   }, []);
 
+  const [isLikeButtonClicked, setIsLikeButtonClicked] = useState(false);
+
+  const [isDateClicked, setIsDateClicked] = useState(false);
+
   const router = useRouter();
   const [onClickListBtn, setOnClickListBtn] = useState(false);
+
   const dateData = [
     { value: "2024/04/08", label: "2024/04/08" },
     { value: "2024/03/12", label: "2024/03/12" },
@@ -234,22 +240,42 @@ function Index() {
 
       <InfoSection>
         <InfoTitle>
-          컵누들 매콤한 맛 소컵
           <div>
-            <ChatBotBtn style={{ marginRight: "16px" }} />
-            <LikeBtn />
+            컵누들 매콤한 맛
+            <CompanyName style={{ marginLeft: "5px" }}>오뚜기</CompanyName>
+          </div>
+          <div>
+            {isLikeButtonClicked ? (
+              <button
+                onClick={() => {
+                  setIsLikeButtonClicked(!isLikeButtonClicked);
+                  console.log(isLikeButtonClicked);
+                }}
+              >
+                <FilledLikeBtn />
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setIsLikeButtonClicked(!isLikeButtonClicked);
+                  console.log(isLikeButtonClicked);
+                }}
+              >
+                <LikeBtn />
+              </button>
+            )}
           </div>
         </InfoTitle>
         <InfoTagSection>
-          <span style={{ marginRight: "8px" }}>오뚜기</span>{" "}
+          <span style={{ marginRight: "8px" }}>1200원</span>{" "}
           <InfoTag>컵라면</InfoTag>
         </InfoTagSection>
 
         <PriceAmountTitleContainer>
-          <PriceAmountTitle>가격</PriceAmountTitle>
+          <PriceAmountTitle>용량</PriceAmountTitle>
         </PriceAmountTitleContainer>
         <ChartContainer>
-          <MyResponsiveLine data={priceData} />
+          <MyResponsiveLine data={capacityData} />
         </ChartContainer>
         {/*
         <ChartContainer>
@@ -260,6 +286,9 @@ function Index() {
           원재료
           <RawMaterialDateButton>
             <Select
+              onChange={() => {
+                setIsDateClicked(!isDateClicked);
+              }}
               className="basic-single"
               classNamePrefix="select"
               defaultValue={dateData[0]}
@@ -291,41 +320,48 @@ function Index() {
             />
           </RawMaterialDateButton>
         </RawMaterialTitle>
-        <RawMaterialList onClickListBtn={onClickListBtn}>
-          {["순한간장분말", "피쉬콜라겐", "건미역"].map((item, key) => (
-            <RawMaterialItem key={key}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "327px",
-                }}
-              >
-                <div style={{ color: "#50E82A" }}>{item}</div>
-                <MaterialAddIcon />
-              </div>
-              <Line />
-            </RawMaterialItem>
-          ))}
-          {["건파", "건조꽃맛살어묵"].map((item, key) => (
-            <RawMaterialItem key={key}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "327px",
-                }}
-              >
-                <div style={{ color: "#E82A58" }}>{item}</div>
-                <MaterialDeleteIcon />
-              </div>
-              <Line />
-            </RawMaterialItem>
-          ))}
-          {["당면", "설탕", "간장분말", "진한감칠맛분", "쇠고기육수분말"].map(
-            (item, key) => (
+        {isDateClicked ? (
+          <RawMaterialList onClickListBtn={onClickListBtn}>
+            {["순한간장분말", "피쉬콜라겐", "건양파"].map((item, key) => (
+              <RawMaterialItem key={key}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "327px",
+                  }}
+                >
+                  <div style={{ color: "#50E82A" }}>{item}</div>
+                  <MaterialAddIcon />
+                </div>
+                <Line />
+              </RawMaterialItem>
+            ))}
+            {["건파", "건조꽃맛살어묵"].map((item, key) => (
+              <RawMaterialItem key={key}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "327px",
+                  }}
+                >
+                  <div style={{ color: "#E82A58" }}>{item}</div>
+                  <MaterialDeleteIcon />
+                </div>
+                <Line />
+              </RawMaterialItem>
+            ))}
+            {[
+              "당면",
+              "설탕",
+              "간장분말",
+              "진한감칠맛분",
+              "쇠고기육수분말",
+              "청양초양념분말",
+            ].map((item, key) => (
               <RawMaterialItem key={key}>
                 <div
                   style={{
@@ -339,9 +375,62 @@ function Index() {
                 </div>
                 <Line />
               </RawMaterialItem>
-            )
-          )}
-        </RawMaterialList>
+            ))}
+          </RawMaterialList>
+        ) : (
+          <RawMaterialList onClickListBtn={onClickListBtn}>
+            {["진한간장분말", "건다시마"].map((item, key) => (
+              <RawMaterialItem key={key}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "327px",
+                  }}
+                >
+                  <div style={{ color: "#50E82A" }}>{item}</div>
+                  <MaterialAddIcon />
+                </div>
+                <Line />
+              </RawMaterialItem>
+            ))}
+            {["건양파", "청양초양념분말"].map((item, key) => (
+              <RawMaterialItem key={key}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "327px",
+                  }}
+                >
+                  <div style={{ color: "#E82A58" }}>{item}</div>
+                  <MaterialDeleteIcon />
+                </div>
+                <Line />
+              </RawMaterialItem>
+            ))}
+            {["당면", "설탕", "간장분말", "진한감칠맛분", "쇠고기육수분말"].map(
+              (item, key) => (
+                <RawMaterialItem key={key}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "327px",
+                    }}
+                  >
+                    <div>{item}</div>
+                  </div>
+                  <Line />
+                </RawMaterialItem>
+              )
+            )}
+          </RawMaterialList>
+        )}
+
         <ListBtnContainer onClickListBtn={onClickListBtn}>
           <RawMaterialListBtn
             onClick={() => setOnClickListBtn(!onClickListBtn)}
@@ -349,28 +438,26 @@ function Index() {
         </ListBtnContainer>
         <SReviewHeader>리뷰</SReviewHeader>
         <SReviewContainer>
-        <ReviewContainer>
-          <ReviewHeader>
-            <ReviewHeaderText>
-              <ProfileImage />
-              <div style={{ marginLeft: "12px" }}>코딩 마법사 2024.02.02</div>
-            </ReviewHeaderText>
-            <ReviewLikeButton>
-              <LikeIcon style={{ marginRight: "6px" }} />
-              17
-            </ReviewLikeButton>
-          </ReviewHeader>
-          <ReviewContent>
-            <ReviewText>
-              몇 년동안 스킴, 슈링크 플레이션이 없어서 너무 좋아요~ 역시 착한
-              기업 갓뚜기 제품!! 앞으로도 재구매 의사 100%입니다!
-            </ReviewText>
-            <ProductImage />
-          </ReviewContent>
-
-        </ReviewContainer>
-      </SReviewContainer>
-
+          <ReviewContainer>
+            <ReviewHeader>
+              <ReviewHeaderText>
+                <ProfileImage />
+                <div style={{ marginLeft: "12px" }}>코딩 마법사 2024.02.02</div>
+              </ReviewHeaderText>
+              <ReviewLikeButton>
+                <LikeIcon style={{ marginRight: "6px" }} />
+                17
+              </ReviewLikeButton>
+            </ReviewHeader>
+            <ReviewContent>
+              <ReviewText>
+                몇 년동안 스킴, 슈링크 플레이션이 없어서 너무 좋아요~ 역시 착한
+                기업 갓뚜기 제품!! 앞으로도 재구매 의사 100%입니다!
+              </ReviewText>
+              <ProductImage />
+            </ReviewContent>
+          </ReviewContainer>
+        </SReviewContainer>
       </InfoSection>
 
       <ToastContainer onClick={() => router.push("/mypage/notification")} />
@@ -563,7 +650,6 @@ const SReviewHeader = styled.div`
   margin-bottom: 12px;
 `;
 
-
 const SReviewContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -657,4 +743,13 @@ const ReviewLandingButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const CompanyName = styled.span`
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Noto Sans KR";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
 `;
