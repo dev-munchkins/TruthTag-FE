@@ -22,7 +22,7 @@ const Index = () => {
   }, []);
   const router = useRouter();
   return (
-    <div>
+    <div style={{ height: "90vh" }}>
       <Title>Chat Bot</Title>
       <Chatbot
         config={config}

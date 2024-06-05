@@ -32,7 +32,7 @@ function CameraApp() {
   function handleCameraStop() {
     console.log("handleCameraStop");
   }
-  const isFullscreen =true;
+  const isFullscreen = true;
 
   return (
     <>
@@ -41,9 +41,13 @@ function CameraApp() {
         <TagIcon />
       </SImageSearchTitle>
 
-      <div>
+      <div style={{ height: "90vh" }}>
         {dataUri ? (
-          <ImagePreview dataUri={dataUri} isFullscreen={isFullscreen} setDataUri={setDataUri} />
+          <ImagePreview
+            dataUri={dataUri}
+            isFullscreen={isFullscreen}
+            setDataUri={setDataUri}
+          />
         ) : (
           <Camera
             onTakePhotoAnimationDone={handleTakePhotoAnimationDone}
