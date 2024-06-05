@@ -19,10 +19,10 @@ const GlobalStyle = createGlobalStyle`
   }
   .react-chatbot-kit-chat-inner-container {
     background-color: black; 
-    height: 520px;
+    height: 540px;
   }
   .react-chatbot-kit-chat-message-container{
-    height: 520px;
+    height: 540px;
   }
   .react-chatbot-kit-chat-header {
     display: none;
