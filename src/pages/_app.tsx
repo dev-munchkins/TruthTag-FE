@@ -3,6 +3,7 @@ import Theme from "@/styles/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import { MuseoModerno } from "next/font/google";
+import Head from "next/head";
 import { createGlobalStyle } from "styled-components";
 
 const museoModerno = MuseoModerno({
@@ -97,6 +98,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <Theme>
         <GlobalStyle />
         <main className={museoModerno.className}>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1"
+            />
+          </Head>
           <Component {...pageProps} />
         </main>
       </Theme>
