@@ -1,6 +1,7 @@
 해당 프로젝트는 [Next.js](https://nextjs.org/) 를 이용해 빌드된 웹 애플리케이션입니다. 
 
-배포 링크 : https://truth-tag.pages.dev/
+## 배포 링크 
+[Truth Tag 배포 링크](https://truth-tag.pages.dev/)
 
 ## Install 하는 법
 git clone https://github.com/dev-munchkins/TruthTag-FE.git
